@@ -1,15 +1,24 @@
 const express = require('express');
-const app = express()
+const app = express();
 
-app.get('/', (req,res) => {
-    res.json({
-        'dokter': [
-            {
-                'name': 'dokter 1',
-                'specialist': 'gigi'
-            }
-        ]
-    });
+let dokter = require('./dokter');
+
+app.get('/dokter', (req,res) => {
+    res.json(dokter);
+})
+
+app.get('/dokter/:specialist', (req,res) => {
+    let dokter_specialist = [];
+    let specialist = req.params.specialist;
+    for (let i = 0; i < dokter.dokter.length; i++) {
+        if (dokter.dokter[i].specialist == specialist) {
+            dokter_specialist.push(dokter.dokter[i])
+        }
+    }
+    const dokter_obj = {
+        dokter_specialist: dokter_specialist
+    }
+    res.send(dokter_obj)
 })
 
 app.listen(3000, () => {
