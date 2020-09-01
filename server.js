@@ -1,0 +1,17 @@
+const express = require('express');
+const app = express()
+
+app.get('/', (req,res) => {
+    res.json({
+        'dokter': [
+            {
+                'name': 'dokter 1',
+                'specialist': 'gigi'
+            }
+        ]
+    });
+})
+
+app.listen(3000, () => {
+    console.log('Server run at port 3000')
+})
