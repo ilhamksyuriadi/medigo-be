@@ -18,7 +18,7 @@ app.get('/dokter/:specialist', (req,res) => {
     const dokter_obj = {
         dokter_specialist: dokter_specialist
     }
-    res.send(dokter_obj)
+    res.json(dokter_obj)
 })
 
 app.listen(3000, () => {
